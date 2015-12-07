@@ -1,3 +1,13 @@
+/*
+ * EditOfficer.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
+
 package databaseprototype;
 
 import com.amazonaws.AmazonServiceException;
@@ -10,10 +20,13 @@ public class EditOfficer extends LoadData
     Table table = dynamoDB.getTable("Officers");
     static TreeSet<Officers> matches;
     static Scanner kb = new Scanner(System.in);
-
+    /*
+     * The EditOfficer method contains the process of editing
+     * an officer within the database.
+     */
     public EditOfficer()
     {
-        boolean found = false;
+        boolean found = false; 
         System.out.println("\n  Edit Officer By Id");
         String offId = getOfficerId();
         if (offId.charAt(0) != '%')
@@ -52,10 +65,13 @@ public class EditOfficer extends LoadData
             }
         }
     }
-
+    /*
+     * The getOfficerId method contains the accessor method
+     * to get an officer's ID.
+     */
     public String getOfficerId()
     {
-        String id;
+        String id; //Officer's ID
         System.out.print("Enter Officer's Id (or % to exit): ");
         id = kb.next();
         if (id.charAt(0) == '%')
@@ -65,7 +81,10 @@ public class EditOfficer extends LoadData
         }
         return id;
     }
-
+    /*
+     * The validateOfficerByID method contains the process of validating
+     * the officer's ID.
+     */
     public boolean validateOfficerById(String theId)
     {
         matches = new TreeSet();
@@ -108,7 +127,10 @@ public class EditOfficer extends LoadData
             return false;
         }
     }
-
+    /*
+     * The EditDept method contains the process of editing
+     * the officer's department within the database.
+     */
     public void editDept(String theId, String theDept)
     {
         Map<String, String> expressionAttributeNames = new HashMap<>();
@@ -124,7 +146,10 @@ public class EditOfficer extends LoadData
                 expressionAttributeValues
         );
     }
-
+    /*
+     * The editFirst method contains the process of editing
+     * the officer's first name within the database.
+     */
     public void editFirst(String theId, String theFirst)
     {
         Map<String, String> expressionAttributeNames = new HashMap<>();
@@ -140,7 +165,10 @@ public class EditOfficer extends LoadData
                 expressionAttributeValues
         );
     }
-
+    /*
+     * The editLast method contains the process of editing
+     * the officer's last name within the database.
+     */
     public void editLast(String theId, String theLast)
     {
         Map<String, String> expressionAttributeNames = new HashMap<>();
@@ -157,7 +185,10 @@ public class EditOfficer extends LoadData
                 expressionAttributeValues
         );
     }
-
+    /*
+     * The editGender method contains the process of editing
+     * the officer's gender within the database.
+     */
     public void editGender(String theId, String theGen)
     {
         Map<String, String> expressionAttributeNames = new HashMap<>();
@@ -173,7 +204,10 @@ public class EditOfficer extends LoadData
                 expressionAttributeValues
         );
     }
-
+    /*
+     * The editSched method contains the process of editing
+     * the officer's schedule within the database.
+     */
     public void editSched(String theId, String theSched)
     {
         Map<String, String> expressionAttributeNames = new HashMap<>();
@@ -189,7 +223,10 @@ public class EditOfficer extends LoadData
                 expressionAttributeValues
         );
     }
-
+    /*
+     * The createOfficerObject method contains the process of creating
+     * an officer object.
+     */
     public Officers createOfficerObject(String s)
     {
         Object obj1 = JSONValue.parse(s);
@@ -205,7 +242,10 @@ public class EditOfficer extends LoadData
         }
         return officer;
     }
-
+    /*
+     * The enterOfficerName method contains the process of collecting user
+     * input to get the officer's name.
+     */
     public boolean enterOfficerName()
     {
         String userSelection;
@@ -227,7 +267,10 @@ public class EditOfficer extends LoadData
         officerFirstName = userSelection;
         return false;
     }
-
+    /*
+     * The enterOfficerGender method contains the process of collecting user
+     * input to get the officer's gender.
+     */
     public boolean enterOfficerGender()
     {
         int userSelection;
@@ -271,7 +314,10 @@ public class EditOfficer extends LoadData
             }
         }
     }
-
+    /*
+     * The enterOfficerDepartment method contains the process of collecting user
+     * input to get the officer's department
+     */
     public boolean enterOfficerDepartment()
     {
         while (true)
@@ -320,7 +366,10 @@ public class EditOfficer extends LoadData
             }
         }
     }
-
+    /*
+     * The enterOfficerSchedule method contains the process of collecting user
+     * input to get the officer's schedule.
+     */
     public boolean enterOfficerSchedule()
     {
         int startTime = 0, endTime = 0;

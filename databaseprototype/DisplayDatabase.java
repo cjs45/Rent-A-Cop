@@ -1,13 +1,27 @@
+/*
+ * DisplayDatabase.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
+
 package databaseprototype;
 
 import java.util.*;
 import com.amazonaws.services.dynamodbv2.document.*;
 
 public class DisplayDatabase extends GetOfficer
-{
+{   
+    /*
+     * The display method contains the process of displaying
+     * the contents of the database to the console.
+     */
     public void display()
     {
-        int total = 0;
+        int total = 0; //Number of items within the database
         matches = new TreeSet();
         String tableName = officerTableName;
         Table table = dynamoDB.getTable(tableName);

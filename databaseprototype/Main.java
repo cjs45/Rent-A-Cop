@@ -1,14 +1,28 @@
+/*
+ * Main.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
+
 package databaseprototype;
 
 public class Main
 {
+	/*
+	 * The main method contains the process of collecting user
+	 * input to make selections to the main menu.
+ 	 */
     public static void main(String[] args) throws Exception
     {
-        boolean flag = true;
+        boolean flag = true; //The condition of the while loop
         while (flag)
         {
             Menus menu = new Menus();
-            int userSelection = menu.mainMenu();
+            int userSelection = menu.mainMenu(); //The user's selection
             if (userSelection == 1)
             {
                 EnterData data = new EnterData();

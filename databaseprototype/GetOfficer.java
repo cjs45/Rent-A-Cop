@@ -1,3 +1,13 @@
+/*
+ * GetOfficer.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
+
 package databaseprototype;
 
 import java.util.*;
@@ -10,19 +20,22 @@ import org.json.simple.parser.*;
 public class GetOfficer
 {
     static DynamoDB dynamoDB = new DynamoDB(new AmazonDynamoDBClient(new ProfileCredentialsProvider()));
-    static String officerTableName = "Officers";
-    static String officerFirstName;
-    static String officerLastName;
-    static String officerGender;
-    static String officerDepartment;
-    static TreeSet<Officers> matches;
-    static OfficerTimes[] officerSchedule = new OfficerTimes[7];
+    static String officerTableName = "Officers"; //Officer Table Name
+    static String officerFirstName; //Officer's first name
+    static String officerLastName; //Officer's last name
+    static String officerGender; //Officer's gender
+    static String officerDepartment; //Officer's department
+    static TreeSet<Officers> matches; //TreeSet of Officers
+    static OfficerTimes[] officerSchedule = new OfficerTimes[7]; //An array of officer times
     static String[] daysOfWeek =
     {
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
         "Saturday", "Sunday"
-    };
-
+    }; //An aaray of days of the week
+    /*
+     * The getOfficerByLName method contains the process of collecting
+     *  an officer by last name from the database.
+     */
     public void getOfficerByLName(boolean multiple, String lastName)
     {
         TreeSet<Officers> officersTree = createOfficersTree(multiple);
@@ -40,7 +53,10 @@ public class GetOfficer
             }
         }
     }
-
+    /*
+     * The getOfficerByMultiple method contains the process of collecting
+     *  an officer by multiple attributes from the database.
+     */
     public void getOfficerByMultiple(String theName, int theGender, int theDepartment, int theDay, int[] theTime)
     {
         boolean multiple = false;
@@ -70,7 +86,10 @@ public class GetOfficer
             multiple = true;
         }
     }
-
+    /*
+     * The getOfficerByGender method contains the process of collecting
+     *  an officer by gender from the database.
+     */
     public void getOfficerByGender(boolean multiple, int theGender)
     {
         String gender;
@@ -98,7 +117,10 @@ public class GetOfficer
             }
         }
     }
-
+    /*
+     * The getOfficerByDepartment method contains the process of collecting
+     *  an officer by department from the database.
+     */
     public void getOfficerByDepartment(boolean multiple, int theDepartment)
     {
         String department;
@@ -129,7 +151,10 @@ public class GetOfficer
             }
         }
     }
-
+    /*
+     * The getOfficerByDayOfWeek method contains the process of collecting
+     *  an officer by a day of the week from the database.
+     */
     public void getOfficerByDayOfWeek(boolean multiple, int theDay)
     {
         String day = daysOfWeek[theDay - 1];
@@ -159,10 +184,13 @@ public class GetOfficer
             }
         }
     }
-
+    /*
+     * The findDay method contains the process of collecting
+     *  a day from the database.
+     */
     public boolean findDay(JSONObject theAccessor, String theDay)
     {
-        int found = 0;
+        int found = 0; //Number of days found
         for (String daysOfWeek1 : daysOfWeek)
         {
             JSONArray dayOfTheWeek = (JSONArray) theAccessor.get(daysOfWeek1);
@@ -181,7 +209,10 @@ public class GetOfficer
         }
         return found > 0;
     }
-
+    /*
+     * The getOfficerByTimeFrame method contains the process of collecting
+     *  an officer by time frame from the database.
+     */
     public void getOfficerByTimeFrame(boolean multiple, int[] theTime)
     {
         TreeSet<Officers> officersTree = createOfficersTree(multiple);
@@ -210,7 +241,10 @@ public class GetOfficer
             }
         }
     }
-
+    /*
+     * The findTimeFrame method contains the process of collecting
+     *  a time frame from the database.
+     */
     public boolean findTimeFrame(JSONObject theAccessor, int[] theTime)
     {
         int found = 0, startTime = 0, endTime = 0;
@@ -298,7 +332,10 @@ public class GetOfficer
         }
         return found > 0;
     }
-
+    /*
+     * The printMatches method contains the process of printing
+     * the matchees found from the database.
+     */
     public void printMatches()
     {
         Iterator<Officers> it = matches.iterator();
@@ -310,7 +347,10 @@ public class GetOfficer
             System.out.println(temp);
         }
     }
-    
+    /*
+     * The createOfficerObject method contains the process of creating
+     * an officer object.
+     */
     public Officers createOfficerObject(String s)
     {
         Object obj1 = JSONValue.parse(s);
@@ -326,10 +366,13 @@ public class GetOfficer
         }
         return officer;
     }
-    
+    /*
+     * The createOfficersTree method contains the process of creating
+     * an officer tree.
+     */
     public TreeSet<Officers> createOfficersTree(boolean multiple)
     {
-        TreeSet<Officers> tree;
+        TreeSet<Officers> tree; //A tree of officers
         if (!multiple)
         {
             Table table = dynamoDB.getTable(officerTableName);

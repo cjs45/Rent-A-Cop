@@ -1,3 +1,13 @@
+/*
+ * LoadData.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
+
 package databaseprototype;
 
 import java.util.*;
@@ -9,18 +19,21 @@ public class LoadData
 {
     static Scanner kb = new Scanner(System.in);
     static DynamoDB dynamoDB = new DynamoDB(new AmazonDynamoDBClient(new ProfileCredentialsProvider()));
-    static String officerTableName = "Officers";
-    static String officerFirstName;
-    static String officerLastName;
-    static String officerGender;
-    static String officerDepartment;
+    static String officerTableName = "Officers"; //Officer Table Name
+    static String officerFirstName; //Officer's first name
+    static String officerLastName; //Officer's last name
+    static String officerGender; //Officer's gender
+    static String officerDepartment; //Officer's department
     static OfficerTimes[] officerSchedule = new OfficerTimes[7];
     static String[] daysOfWeek =
     {
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
         "Saturday", "Sunday"
-    };
-    
+    }; //An array of days of the week
+    /*
+     * The loadOfficerManual method contains the process of loading
+     * the officer to the database.
+     */
     public void loadOfficersManual()
     {   
         String daysAvailable = "{";

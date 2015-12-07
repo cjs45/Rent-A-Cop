@@ -1,3 +1,13 @@
+/*
+ * DeleteOfficer.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
+
 package databaseprototype;
 
 import com.amazonaws.auth.profile.*;
@@ -15,6 +25,10 @@ public class DeleteOfficer
     static TreeSet<Officers> matches;
     static Scanner kb = new Scanner(System.in);
 
+    /*
+     * The DeleteOfficer constructor displaying the message of
+     * deleting the officer by ID.
+     */
     public DeleteOfficer()
     {
         System.out.println("\n  Delete Officer By Id");
@@ -30,7 +44,10 @@ public class DeleteOfficer
             }
         }
     }
-
+    /*
+     * The getOfficerId method the accessor method to get
+     * the officer's ID.
+     */
     public String getOfficerId()
     {
         String id;
@@ -43,7 +60,10 @@ public class DeleteOfficer
         }
         return id;
     }
-
+    /*
+     * The deleteOfficerById method contains the process of deleting
+     * an officer by ID from the database.
+     */
     public void deleteOfficerById(String theId)
     {
         matches = new TreeSet();
@@ -88,7 +108,10 @@ public class DeleteOfficer
         System.out.println();
 
     }
-
+    /*
+     * The createOfficerObject method contains the process of creating
+     * an officer object.
+     */
     public Officers createOfficerObject(String s)
     {
         Object obj1 = JSONValue.parse(s);

@@ -1,3 +1,12 @@
+/*
+ * SearchOfficer.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
 package databaseprototype;
 
 import java.util.*;
@@ -11,11 +20,14 @@ public class SearchOfficer
     {
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
         "Saturday", "Sunday"
-    };
-
+    }; //An array of days of the week
+    /*
+     * The SearchOfficer method contains the process of searching
+     * an officer within the database.
+     */
     public SearchOfficer()
     {
-        boolean multiple = false;
+        boolean multiple = false; //To search multiple attributes
         Menus menu = new Menus();
         int searchBy = menu.searchMenu();
         GetOfficer retrieve = new GetOfficer();
@@ -172,10 +184,13 @@ public class SearchOfficer
             System.out.println(retrieve.matches.size() + " match(es) found\n");
         }
     }
-
+    /*
+     * The SearchByLName method contains the process of searching
+     * an officer by Last Name within the database.
+     */
     public String searchByLName()
     {
-        String lastName;
+        String lastName; //Contains officer's last name
         System.out.print("Enter Officer's Last Name (or % to exit): ");
         lastName = kb.next();
         if (lastName.charAt(0) == '%')
@@ -185,10 +200,13 @@ public class SearchOfficer
         }
         return lastName;
     }
-
+    /*
+     * The SearchByMultiple method contains the process of searching
+     * an officer by multiple attributes within the database.
+     */
     public int[] searchByMultiple()
     {
-        boolean flag = true;
+        boolean flag = true; //The condition of the while look
         while (flag)
         {
             int[] multipleSearch =
@@ -296,10 +314,13 @@ public class SearchOfficer
         };
         return tmp;
     }
-
+    /*
+     * The SearchByGender method contains the process of searching
+     * an officer by gender within the database.
+     */
     public int searchByGender()
     {
-        int userSelection;
+        int userSelection; //The user's selection
         while (true)
         {
             try
@@ -309,7 +330,7 @@ public class SearchOfficer
                 System.out.println("3. Exit");
                 System.out.print("Select An Option: ");
                 userSelection = kb.nextInt();
-                if (userSelection < 1 || userSelection > 3)
+                if (userSelection < 1 || userSelection > 3) //Error detection
                 {
                     System.out.println("Incorrect Selection!");
                     System.out.println("Please Enter 1, 2, or 3");
@@ -331,10 +352,13 @@ public class SearchOfficer
             }
         }
     }
-
+    /*
+     * The SearchByDepartment method contains the process of searching
+     * an officer by Police Department within the database.
+     */
     public int searchByDepartment()
     {
-        int userSelection;
+        int userSelection; //The user's selection
         while (true)
         {
             try
@@ -345,7 +369,7 @@ public class SearchOfficer
                 System.out.println("4. Exit");
                 System.out.print("Select An Option: ");
                 userSelection = kb.nextInt();
-                if (userSelection < 1 || userSelection > 4)
+                if (userSelection < 1 || userSelection > 4) //Error Detection
                 {
                     System.out.println("Incorrect Selection!");
                     System.out.println("Please Enter 1, 2, 3, or 4");
@@ -367,10 +391,13 @@ public class SearchOfficer
             }
         }
     }
-
+    /*
+     * The SearchByDayofWeek method contains the process of searching
+     * an officer by the days of which they work within the database.
+     */
     public int searchByDayOfWeek()
     {
-        int userSelection;
+        int userSelection; //The user's selection
         while (true)
         {
             try
@@ -385,7 +412,7 @@ public class SearchOfficer
                 System.out.println("8. Exit");
                 System.out.print("Select An Option: ");
                 userSelection = kb.nextInt();
-                if (userSelection < 1 || userSelection > 8)
+                if (userSelection < 1 || userSelection > 8) //Error detection
                 {
                     System.out.println("Incorrect Selection!");
                     System.out.println("Please Enter 1, 2, 3, 4, 5, 6, 7, or 8");
@@ -407,28 +434,31 @@ public class SearchOfficer
             }
         }
     }
-
+    /*
+     * The SearchByTimeFrame method contains the process of searching
+     * an officer by the time they work within the database.
+     */
     public int[] searchByTimeFrame()
     {
-        int[] array = new int[2];
+        int[] array = new int[2]; //An array for the times, start and end
         System.out.println("Enter Time Frame (24-Hour Format)");
         System.out.println("E.g. 10:35pm = 2235 or 9:23am = 0923");
 
-        boolean flag = true;
+        boolean flag = true; //The condition of the while loop
         while (flag)
         {
             while (flag)
             {
                 try
                 {
-                    System.out.print("Start Time (or -1 to exit): ");
+                    System.out.print("Start Time (or -1 to exit): "); 
                     array[0] = kb.nextInt();
-                    if (array[0] == -1)
+                    if (array[0] == -1) //Exit Method
                     {
                         System.out.println("GoodBye!\n");
                         return array;
                     }
-                    else if (array[0] < 0 || array[0] > 2400)
+                    else if (array[0] < 0 || array[0] > 2400) //Error Detection
                     {
                         System.out.println("Incorrect Selection!");
                         System.out.println("Time Has To Be Between 0000 and 2400");
@@ -452,12 +482,12 @@ public class SearchOfficer
                 {
                     System.out.print("End Time (or -1 to exit): ");
                     array[1] = kb.nextInt();
-                    if (array[1] == -1)
+                    if (array[1] == -1) //Exit Method
                     {
                         System.out.println("GoodBye!\n");
                         return array;
                     }
-                    else if (array[1] < 0 || array[1] > 2400)
+                    else if (array[1] < 0 || array[1] > 2400) //Error Detection
                     {
                         System.out.println("Incorrect Selection!");
                         System.out.println("Time Has To Be Between 0000 and 2400");
@@ -473,12 +503,12 @@ public class SearchOfficer
                     System.out.println("Time Has To Be Between 0000 and 2400");
                 }
             }
-            if (array[0] == array[1])
+            if (array[0] == array[1]) //Error Detection
             {
                 System.out.println("Start Time And End Time Cannot Be Equal");
                 flag = true;
             }
-            else if (array[0] == 2400 && array[1] == 0)
+            else if (array[0] == 2400 && array[1] == 0) //Error Detection
             {
                 System.out.println("Invalid Time Frame!");
                 System.out.println("Cannot search from " + array[0] + " to " + array[1] + ".");

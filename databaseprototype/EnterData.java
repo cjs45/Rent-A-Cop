@@ -1,3 +1,13 @@
+/*
+ * EnterData.java
+ * 
+ * Version 1
+ *
+ * 12/6/2015
+ * 
+ * Copyright notice
+ */
+
 package databaseprototype;
 
 import java.util.*;
@@ -5,6 +15,10 @@ import com.amazonaws.*;
 
 public class EnterData extends LoadData
 {
+    /*
+     * The enterOfficerInfo method contains the process of collecting user
+     * input of officer's information.
+     */
     public void enterOfficerInfo()
     {
         Menus menu = new Menus();
@@ -24,10 +38,13 @@ public class EnterData extends LoadData
             }
         } while (menu.addOfficerMenu());
     }
-
+    /*
+     * The enterOfficerName method contains the process of collecting user
+     * input of an officer's name.
+     */
     public boolean enterOfficerName()
     {
-        String userSelection;
+        String userSelection; //The user's selection
         System.out.print("Enter Officer's Last Name (or % to exit): ");
         userSelection = kb.next();
         if (userSelection.charAt(0) == '%')
@@ -46,10 +63,13 @@ public class EnterData extends LoadData
         officerFirstName = userSelection;
         return false;
     }
-
+    /*
+     * The enterOfficerGender method contains the process of collecting user
+     * input of an officer's gender.
+     */
     public boolean enterOfficerGender()
     {
-        int userSelection;
+        int userSelection; //The user's selection
         while (true)
         {
             try
@@ -90,7 +110,10 @@ public class EnterData extends LoadData
             }
         }
     }
-
+    /*
+     * The enterOfficerDepartment method contains the process of collecting user
+     * input of an officer's department.
+     */
     public boolean enterOfficerDepartment()
     {
         while (true)
@@ -139,7 +162,10 @@ public class EnterData extends LoadData
             }
         }
     }
-
+    /*
+     * The enterOfficersSchedule method contains the process of collecting user
+     * input of an officer's schedule.
+     */
     public boolean enterOfficerSchedule()
     {
         int startTime = 0, endTime = 0;
